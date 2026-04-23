@@ -1,0 +1,90 @@
+{
+	"common": {
+		"name": "blink",
+		"version": "0.0.1",
+		"news": {
+			"0.0.1": {
+				"en": "initial release",
+				"de": "Erstveröffentlichung",
+				"ru": "Начальная версия",
+				"pt": "lançamento inicial",
+				"nl": "Eerste uitgave",
+				"fr": "Première version",
+				"it": "Versione iniziale",
+				"es": "Versión inicial",
+				"pl": "Pierwsze wydanie",
+				"uk": "Початкова версія",
+				"zh-cn": "首次出版"
+			}
+		},
+		"titleLang": {
+			"en": "blink system",
+			"de": "Blinksystem",
+			"ru": "система мигания",
+			"pt": "sistema de piscar",
+			"nl": "knippersysteem",
+			"fr": "système de clignotement",
+			"it": "sistema di lampeggiamento",
+			"es": "sistema de parpadeo",
+			"pl": "system migania",
+			"uk": "система миготіння",
+			"zh-cn": "眨眼系统"
+		},
+		"desc": {
+			"en": "adapter for amazon blink system and ioBroker",
+			"de": "Adapter für Amazon Blink System und ioBroker",
+			"ru": "адаптер для системы Amazon Blink и ioBroker",
+			"pt": "adaptador para sistema Amazon Blink e ioBroker",
+			"nl": "adapter voor Amazon blink-systeem en ioBroker",
+			"fr": "adaptateur pour système clignotant amazon et ioBroker",
+			"it": "adattatore per sistema Amazon Blink e ioBroker",
+			"es": "Adaptador para sistema Amazon Blink e ioBroker.",
+			"pl": "adapter do systemu Amazon Blink i ioBroker",
+			"uk": "адаптер для системи amazon blink і ioBroker",
+			"zh-cn": "适用于亚马逊 Blink 系统和 ioBroker 的适配器"
+		},
+		"authors": [
+			"Pischleuder1 <pischleuder@gmx.de>"
+		],
+		"keywords": [
+			"security",
+			"blink",
+			"amazon"
+		],
+		"licenseInformation": {
+			"type": "free",
+			"license": "MIT"
+		},
+		"platform": "Javascript/Node.js",
+		"icon": "blink.png",
+		"enabled": true,
+		"extIcon": "https://raw.githubusercontent.com/Pischleuder1/ioBroker.blink/main/admin/blink.png",
+		"readme": "https://github.com/Pischleuder1/ioBroker.blink/blob/main/README.md",
+		"loglevel": "info",
+		"tier": 3,
+		"mode": "daemon",
+		"type": "alarm",
+		"compact": true,
+		"connectionType": "cloud",
+		"dataSource": "poll",
+		"adminUI": {
+			"config": "json"
+		},
+		"dependencies": [
+			{
+				"js-controller": ">=6.0.11"
+			}
+		],
+		"globalDependencies": [
+			{
+				"admin": ">=7.0.23"
+			}
+		]
+	},
+	"native": {
+		"option1": true,
+		"option2": "42"
+	},
+	"objects": [],
+	"instanceObjects": []
+}
