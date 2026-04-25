@@ -107,7 +107,7 @@
     },
     "batteryWarningHeader": {
       "type": "staticText",
-      "text": "<h3>Batteriewarnung per Pushover</h3>",
+      "text": "Batteriewarnung per Pushover",
       "sm": 12,
       "xs": 12,
       "lg": 4,
