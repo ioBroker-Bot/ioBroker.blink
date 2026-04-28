@@ -4,19 +4,43 @@
 		"version": "0.0.5",
 		"news": {
                         "0.0.5": {
-                               "en": "new admin menu, checkbox to turn log on / off",
-                               "de": "neues Admin Menü, checkbox, um log an /auszuschalten",
-                               "ru": "Новое меню администратора, Log можно включить/выключить"
+                               "en": "new admin menu, checkbox to turn log on / off\n",
+ 			       "de": "neues Admin-Menü, Checkbox, um Log ein- / auszuschalten\n",
+                               "ru": "новое меню администратора, флажок для включения / выключения\n",
+                               "pt": "novo menu de administração, caixa de seleção para ligar / desligar\n",
+                               "nl": "nieuw adminmenu, selectievakje om log in / uit te zetten\n",
+                               "fr": "nouveau menu admin, case à cocher pour activer / désactiver la connexion\n",
+                               "it": "nuovo menu admin, casella di controllo per attivare / disattivare\n",
+                               "es": "nuevo menú de administración, casilla de verificación para activar / apagar\n",
+                               "pl": "nowe menu administratora, pole wyboru, aby włączyć / wyłączyć dziennik\n",
+                               "uk": "нове меню адміністратора, прапорець для включення / вимкнення\n",
+                               "zh-cn": "新建管理员菜单, 打开/ 关闭日志的复选框\n"
                                 },
                        "0.0.4": {
                                "en": "integrated Amazon Video Doorbell",
-                               "de": "Amazon Video Doorbell integriert",
-                               "ru": "amazon Video Doorbell интегрированный"
+                               "de": "amazon Video Doorbell integriert",
+                               "ru": "amazon Video Doorbell",
+                               "pt": "sino de vídeo integrado Amazon",
+                               "nl": "geïntegreerde Amazon Video Doorbell",
+                               "fr": "sonnette vidéo Amazon intégrée",
+                               "it": "campanello video Amazon integrato",
+                               "es": "integrado Amazon Video Doorbell",
+                               "pl": "zintegrowany Amazon Video Doorbell",
+                               "uk": "інтегрований Amazon Video Doorbell",
+                               "zh-cn": "集成的亚马逊视频门"
                                  },
                        "0.0.2": {
                                "en": "Updated Blink API integration and package metadata.",
-                               "de": "Blink-API-Integration und Paket-Metadaten aktualisiert.",
-                               "ru": "Обновлена интеграция Blink API и метаданные пакета."
+                               "de": "Aktualisierte Blink API Integration und Paket Metadaten.",
+                               "ru": "Обновленная интеграция Blink API и метаданные пакетов.",
+                               "pt": "Atualização da integração da API Blink e metadados do pacote.",
+                               "nl": "Bijgewerkt Blink API integratie en pakketmetadata.",
+                               "fr": "Mise à jour de l'intégration de l'API Blink et des métadonnées du paquet.",
+                               "it": "Aggiornato l'integrazione API Blink e i metadati dei pacchetti.",
+                               "es": "Actualización de la integración de Blink API y metadatos de paquetes.",
+                               "pl": "Zaktualizowana integracja Blink API i metadane pakietów.",
+                               "uk": "Оновлено інтеграцію Blink API та метаданих пакетів.",
+                               "zh-cn": "更新了Blink API集成和包元数据."
                                  },
 			"0.0.1": {
 				"en": "initial release",
@@ -98,7 +122,12 @@
 		]
 	},
 	"encryptedNative": [
-		"password"
+		"password",
+		"pin"
+	],
+	"protectedNative": [
+		"password",
+		"pin"
 	],
 	"native": {
 		"email": "",
@@ -106,6 +135,7 @@
 		"pin": "",
 		"pollIntervalSec": 60,
 		"snapshotDir": "/opt/iobroker/iobroker-data/blink",
+                "debugLogEnabled": false,
 		"liveSnapshotEnabled": true,
 		"liveSnapshotIntervalSec": 30,
 		"storeBase64": true,
