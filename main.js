@@ -3,9 +3,6 @@
  * Created with @iobroker/create-adapter v3.1.2
  */
 
-// The adapter-core module gives you access to the core ioBroker functions
-// you need to create an adapter
-
 const utils = require('@iobroker/adapter-core');
 const fs = require('fs');
 const path = require('path');
@@ -164,6 +161,7 @@ class BlinkAdapter extends utils.Adapter {
 		await this.ensureState(`${base}.status.battery`, 'Batterie (V)', 'number', 'value.battery', false);
 		await this.ensureState(`${base}.status.battery_raw`, 'Batterie roh', 'number', 'value', false);
 		await this.ensureState(`${base}.status.battery_volt`, 'Batteriespannung (V)', 'number', 'value.voltage', false);
+		await this.ensureState(`${base}.status.battery_text`, 'Batterie Hinweis', 'string', 'text', false);
 		await this.ensureState(`${base}.status.temperature`, 'Temperatur (°C)', 'number', 'value.temperature', false);
 		await this.ensureState(`${base}.status.temperature_f`, 'Temperatur (°F)', 'number', 'value.temperature', false);
 		await this.ensureState(`${base}.status.temperature_text`, 'Temperatur Hinweis', 'string', 'text', false);
@@ -208,6 +206,7 @@ class BlinkAdapter extends utils.Adapter {
 		await this.ensureState(`${base}.live.timestamp`, 'Live-Snapshot Zeitstempel', 'string', 'date', false);
 
 		await this.initStateIfUnset(`${base}.status.armed`, false);
+		await this.initStateIfUnset(`${base}.status.battery_text`, '');
 		await this.initStateIfUnset(`${base}.status.temperature_text`, '');
 		await this.initStateIfUnset(`${base}.battery.low`, false);
 		await this.initStateIfUnset(`${base}.battery.lastWarning`, '');
@@ -234,20 +233,62 @@ class BlinkAdapter extends utils.Adapter {
 		await this.setStateAsync(`${base}.info.name`, String(cam.name || ''), true);
 		await this.setStateAsync(`${base}.info.serial`, String(cam.serial || ''), true);
 		await this.setNumStateIfValid(`${base}.info.network_id`, cam.network_id);
+
+		const apiType = String(cam.apiType || '').toLowerCase();
+		const nameLc = String(cam.name || '').toLowerCase();
+		const serialLc = String(cam.serial || '').toLowerCase();
+
 		await this.setNumStateIfValid(`${base}.status.battery`, cam.battery_volt);
 		await this.setNumStateIfValid(`${base}.status.battery_raw`, cam.battery_raw);
 		await this.setNumStateIfValid(`${base}.status.battery_volt`, cam.battery_volt);
 
-		const apiType = String(cam.apiType || '').toLowerCase();
+		const batteryVolt = this.toNum(cam.battery_volt);
+		const batteryRaw = this.toNum(cam.battery_raw);
+
+		const noBatteryDevice =
+			apiType === 'owl' ||
+			apiType === 'mini' ||
+			nameLc.includes('pantilt') ||
+			nameLc.includes('pan tilt') ||
+			nameLc.includes('blink mini') ||
+			nameLc.includes('mini') ||
+			serialLc.includes('mini');
+
+		const noBatteryData =
+			(batteryVolt === null && batteryRaw === null) ||
+			((batteryVolt === 0 || batteryVolt === null) && (batteryRaw === 0 || batteryRaw === null));
+
+		if (noBatteryDevice && noBatteryData) {
+			await this.setStateAsync(`${base}.status.battery`, { val: null, ack: true });
+			await this.setStateAsync(`${base}.status.battery_raw`, { val: null, ack: true });
+			await this.setStateAsync(`${base}.status.battery_volt`, { val: null, ack: true });
+			await this.setStateAsync(`${base}.status.battery_text`, 'not available', true);
+		} else {
+			await this.setStateAsync(`${base}.status.battery_text`, '', true);
+		}
+
 		const tempC = this.toNum(cam.temperature);
 		const tempF = this.toNum(cam.temperature_f);
+
+		const noTemperatureDevice =
+			apiType === 'owl' ||
+			apiType === 'mini' ||
+			nameLc.includes('pantilt') ||
+			nameLc.includes('pan tilt') ||
+			nameLc.includes('blink mini') ||
+			nameLc.includes('mini') ||
+			serialLc.includes('mini');
+
+		const noTemperatureData =
+			(tempC === null && tempF === null) ||
+			((tempC === 0 || tempC === null) && (tempF === 0 || tempF === null));
 
 		const doorbellNoTemp =
 			apiType === 'doorbell' &&
 			((tempC === null && tempF === null) ||
 				((tempC === 0 || tempC === null) && (tempF === 0 || tempF === null)));
 
-		if (doorbellNoTemp) {
+		if (doorbellNoTemp || (noTemperatureDevice && noTemperatureData)) {
 			await this.setStateAsync(`${base}.status.temperature`, { val: null, ack: true });
 			await this.setStateAsync(`${base}.status.temperature_f`, { val: null, ack: true });
 			await this.setStateAsync(`${base}.status.temperature_text`, 'not available', true);

@@ -1,8 +1,21 @@
 {
 	"common": {
 		"name": "blink",
-		"version": "0.0.5",
+		"version": "0.0.6",
 		"news": {
+                        "0.0.6": {
+                               "en": "Blink PanTilt and Blink Mini - temperature_text and battery_text set to \"not available\" because of no built in temperature and battery indicator\nblink.0.xxx.xxx.status.wifi_strength fixed\n \n",
+                               "de": "Blink PanTilt und Blink Mini - temperatur text und akku text gesetzt auf \"nicht verfügbar\" weil keine eingebaute Temperatur- und Batterieanzeige\nblink.0.xxx.xxx.status.wifi strength fix\n \n",
+                               "ru": "Blink PanTilt и Blink Mini - temperature text и battery text настроены на «недоступность» из-за отсутствия встроенного индикатора температуры и батареи\nblink.0.xxx.xxx.status.wifi strengthed\n \n",
+                               "pt": "Blink PanTilt e Blink Mini - temperatura texto e bateria texto definido para \"não disponível\" por não ter incorporado em indicador de temperatura e bateria\nblink.0.xxxxxx.status.wifi  strength fixed\n \n",
+                               "nl": "Knipper PanTilt en Blink Mini - temperatuur tekst en batterij tekst ingesteld op \"niet beschikbaar\" vanwege geen ingebouwde temperatuur en batterij indicator\nblink.0.xxx.xxx.status.wifi sterkfixed\n \n",
+                               "fr": "Blink PanTilt et Blink Mini - temperature text et batterie text réglé à \"non disponible\" en raison de l'absence d'indicateur de température et de batterie\nclignotant.0.xxx.xxx.status.wifi resistance corrigé\n \n",
+                               "it": "Blink PanTilt e Blink Mini - temperatura text e batteria text impostato per \"non disponibile\" a causa di nessun built in temperatura e indicatore della batteria\nblink.0.xxx.xxx.status.wifi strength fisso\n \n",
+                               "es": "Blink PanTilt y Blink Mini - temperature text y Battery text fijados a \"no disponible\" debido a que no se construye en el indicador de temperatura y batería\nblink.0.xxx.xxx.status.wifi strength fijo\n \n",
+                               "pl": "Blink PanTilt i Blink Mini - temperatura _ tekst i bateria _ tekst ustawić na \"niedostępny\" ze względu na brak wbudowany wskaźnik temperatury i baterii\nblink.0.xxx.xxx.status.wifi _ stand\n \n",
+                               "uk": "Blink PanTilt і Blink Mini - температура текст і акумулятор текстовий набір до \"не доступний\" через не вбудований індикатор температури і батареї\njavascript licenses api веб-сайт go1.13.8\n \n",
+                                "zh-cn": "Blink Pantilt 和 Blink Mini - 温度  text 和电池  text 设置为\"不可用\",因为没有在温度和电池指标中构建\n闪烁0.xxxxxx.status.wifi strength 已固定\n \n"
+                               },
                         "0.0.5": {
                                "en": "new admin menu, checkbox to turn log on / off\n",
  			       "de": "neues Admin-Menü, Checkbox, um Log ein- / auszuschalten\n",
@@ -105,7 +118,6 @@
 		"type": "alarm",
 		"compact": true,
 		"connectionType": "cloud",
-		"materialize": true,
 		"dataSource": "poll",
 		"adminUI": {
 			"config": "json"

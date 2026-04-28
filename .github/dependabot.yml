@@ -5,7 +5,6 @@ updates:
     cooldown: { default: 7 }
     schedule:
       interval: monthly
-      day: 20
       time: "00:05"
       timezone: Europe/Berlin
     open-pull-requests-limit: 5
@@ -17,7 +16,6 @@ updates:
     directory: "/"
     schedule:
       interval: monthly
-      day: 20
       time: "00:05"
       timezone: Europe/Berlin
     open-pull-requests-limit: 5
