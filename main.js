@@ -33,8 +33,8 @@ class BlinkAdapter extends utils.Adapter {
 
 		try {
 			fs.rmSync('/tmp/blink_debug.log', { force: true });
-		} catch (e) {
-			// ignore
+		} catch {
+			// Datei existiert evtl. nicht – das ist kein Fehler.
 		}
 
 		this.setState('info.connection', false, true);
@@ -78,7 +78,9 @@ class BlinkAdapter extends utils.Adapter {
 
 		try {
 			fs.mkdirSync(snapshotDir, { recursive: true });
-		} catch {}
+		} catch {
+			// Verzeichnis existiert bereits oder kann nicht angelegt werden – beim Schreiben fällt das ohnehin auf.
+		}
 
 		await this.setObjectNotExistsAsync('info.connection', {
 			type: 'state',
@@ -280,8 +282,7 @@ class BlinkAdapter extends utils.Adapter {
 			serialLc.includes('mini');
 
 		const noTemperatureData =
-			(tempC === null && tempF === null) ||
-			((tempC === 0 || tempC === null) && (tempF === 0 || tempF === null));
+			(tempC === null && tempF === null) || ((tempC === 0 || tempC === null) && (tempF === 0 || tempF === null));
 
 		const doorbellNoTemp =
 			apiType === 'doorbell' &&
@@ -404,7 +405,9 @@ class BlinkAdapter extends utils.Adapter {
 			try {
 				const b64 = fs.readFileSync(file).toString('base64');
 				await this.setStateAsync(`${base}.live.image_base64`, `data:image/jpeg;base64,${b64}`, true);
-			} catch {}
+			} catch {
+				// base64-State ist optional – Lesefehler nicht eskalieren.
+			}
 		}
 	}
 
@@ -614,7 +617,9 @@ class BlinkAdapter extends utils.Adapter {
 				if (now - fs.statSync(full).mtimeMs > maxAgeMs) {
 					fs.unlinkSync(full);
 				}
-			} catch {}
+			} catch {
+				// Datei wurde evtl. parallel gelöscht – nächster Lauf räumt nach.
+			}
 		}
 	}
 
@@ -647,7 +652,7 @@ class BlinkAdapter extends utils.Adapter {
 	}
 
 	sanitizeId(id) {
-		return String(id).replace(/[^a-zA-Z0-9_\-]/g, '_');
+		return String(id).replace(/[^a-zA-Z0-9_-]/g, '_');
 	}
 
 	toNum(v) {
