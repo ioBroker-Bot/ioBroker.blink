@@ -4,10 +4,10 @@ updates:
     directory: "/"
     cooldown: { default: 7 }
     schedule:
-      interval: monthly
-      time: "00:05"
+      interval: cron
+      cronjob: "5 4 7 * *"
       timezone: Europe/Berlin
-    open-pull-requests-limit: 5
+    open-pull-requests-limit: 15
     assignees:
       - Pischleuder1
     versioning-strategy: increase
@@ -15,9 +15,9 @@ updates:
   - package-ecosystem: github-actions
     directory: "/"
     schedule:
-      interval: monthly
-      time: "00:05"
+      interval: cron
+      cronjob: "35 6 19 * *"
       timezone: Europe/Berlin
-    open-pull-requests-limit: 5
+    open-pull-requests-limit: 15
     assignees:
       - Pischleuder1
